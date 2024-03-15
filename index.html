@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    
+    <title></title>
+</head>
+
+
+    <body>
+    <form id="f">
+    <fieldset>
+        <label >Nom:</label>
+        <input type="text" id="nom" ><br><br>
+        <label >Age:</label>
+        <input type="text" id="age" ><br><br>
+        <label >Email:</label>
+        <input type="text" id="email" ><br><br>
+        <button type="button" onclick="verif()">confirmer</button>
+        <button type="reset" >suprimer</button>
+        <button type="button" onclick="ajouter()">Ajouter</button>
+        <br><br>
+        <table id="t">
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Age</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody id="table">
+            
+          </tbody>
+        </table>
+    </fieldset>
+    </form>
+    <script>
+        alert("bienvenue");
+    function alpha(ch){
+        t=true;
+        i=0;
+        ch=ch.toUpperCase();
+        while(i<ch.length && t)
+            if((ch.charAt(i)<"A" || ch.charAt(i)>"Z") && ch.charAt(i)!=" ")
+                t=false;
+            else
+                i++;
+        return t;
+    }
+    function verif(){
+    test=true;
+    nom=document.getElementById("nom").value;
+    age=document.getElementById("age").value;
+    email=document.getElementById("email").value;
+    posarobe=email.indexOf("@");
+    pospoint=email.indexOf(".");
+    ch1=email.substr(0,posarobe);
+    ch2=email.substr(posarobe+1,pospoint-posarobe-1);
+    ch3=email.substr(pospoint+1);
+    if( nom=="" || !alpha(nom)){
+        test=false;
+        alert('nom  invalide');
+       
+        }
+        else
+        if( age=="" ||isNaN(age)){
+            test=false;
+            alert("age  invalide");
+        }
+        else 
+        
+
+            if(email=="" || email.length>50 || ch1.length<3 || ch2.length<3 || ch3.length<2 || ch3.length>4 || posarobe==-1 || pospoint==-1 || posarobe>pospoint )
+	        {
+		        test=false;
+		        alert(" email invalide");
+		        
+	        }
+            else 
+                alert("nous avons confirmé tous les informations.  ajoute votre informations");
+            
+
+        return test;
+    }
+    function ajouter() {
+        nom=document.getElementById("nom").value;
+        age=document.getElementById("age").value;
+        email=document.getElementById("email").value;
+        if (nom.trim() !== "" && age.trim() !== "" ) {
+                table = document.getElementById('table');
+                newRow = table.insertRow();
+                nom = newRow.insertCell(0);
+                age = newRow.insertCell(1);
+                email = newRow.insertCell(2);
+
+            nom.innerHTML  = nom;
+            age.innerHTML  = age;
+            email.innerHTML = email;
+
+            document.getElementById("nom").value = "";
+            document.getElementById("age").value = "";
+            document.getElementById("email").value="";
+        } else 
+            alert("Veuillez remplir tous les champs du formulaire.");
+    
+    }
+
+ 
+    </script>        
+
+    
+</body>
+</html>
